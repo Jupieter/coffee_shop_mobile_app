@@ -71,10 +71,13 @@ MDScreen:
             MDLabel:
                 text: 'Home'
                 halign: 'center'
-            MDRoundFlatButton:
-                text: "LOG IN"
-                font_size: 12
-                pos_hint: {"center_x": 0.5}
+            MDBoxLayout:
+                id: box_login
+                orientation: "vertical"
+                adaptive_size: True
+                spacing: "56dp"
+                pos_hint: {"center_x": .5, "center_y": .5}
+
 
         MDBottomNavigationItem:
             name: 'screen 2'
@@ -85,6 +88,10 @@ MDScreen:
             MDLabel:
                 text: 'Order Coffe'
                 halign: 'center'
+            MDRoundFlatButton:
+                text: "LOG IN"
+                font_size: 12
+                pos_hint: {"center_x": 0.5}
 
         MDBottomNavigationItem:
             name: 'screen 3'
@@ -127,9 +134,6 @@ MDScreen:
                     MDIconButton:         
                         pos_hint: {"center_x": .5, "center_y": .5}
                         icon: "image/coffe_bean_heart.png"
-                    
-                
-                    
 
 
         MDNavigationDrawer:
@@ -142,5 +146,8 @@ MDScreen:
                 orientation: 'vertical'
                 padding: "8dp"
                 spacing: "8dp"
+
+
+    
             
                 

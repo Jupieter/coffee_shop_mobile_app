@@ -12,8 +12,11 @@ from kivy.properties import StringProperty, ListProperty
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
-from item_drawer import ItemDrawer
+from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
+from kivymd.uix.card import MDCard
 
+from login import LoginCard
+from item_drawer import ItemDrawer
 # class ItemDrawer(OneLineIconListItem):
 #     icon = StringProperty()
 #     text_color = ListProperty((0, 0, 0, 1))
@@ -33,7 +36,6 @@ class DrawerList(ThemableBehavior, MDList):
         instance_item.text_color = self.theme_cls.primary_color
 
 
-
 class TestNavigationDrawer(MDApp):
     def build(self):
         print('zero')
@@ -51,11 +53,18 @@ class TestNavigationDrawer(MDApp):
             "checkbox-marked": "Shared with me",
             "upload": "Upload",
         }
-        print(icons_item)
+        # print(icons_item)
         for icon_name in icons_item.keys():            
             self.root.ids.content_drawer.ids.md_list.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name])
             )
+            
+        self.root.ids.box_login.add_widget(
+            LoginCard(
+                line_color=(0.2, 0.2, 0.2, 0.8),         
+                )
+            )
+
 
 
 

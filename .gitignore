@@ -2,6 +2,7 @@
 *~
 __pycache__
 kivy_venv
+conf/logs
 db.sqlite3
 /django
 .DS_Store

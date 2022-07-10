@@ -4,13 +4,16 @@ os.environ['KIVY_NO_CONSOLELOG'] = '1'
 
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.uix.widget import Widget
+from kivymd.uix.card import MDCard
 
 import requests
 
-class MainApp(Widget):
-	Builder.load_file('kv/login.kv')
+Builder.load_file('kv/login.kv')
 
+class LoginCard(MDCard):
+	pass
+
+'''
 	def logger(self):
 		user = self.root.ids.user.text
 		password = self.root.ids.password.text
@@ -30,3 +33,4 @@ class MainApp(Widget):
 	def on_touch_down(self):
 			print('Touch is a double tap !')
 	
+'''
