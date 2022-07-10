@@ -1,0 +1,52 @@
+[INFO   ] Logger: Record log in D:\GIT\kivy_django_kivy/conf\logs\kivy_22-07-09_35.txt
+[INFO   ] deps: Successfully imported "kivy_deps.angle" 0.3.2
+[INFO   ] deps: Successfully imported "kivy_deps.glew" 0.3.1
+[INFO   ] deps: Successfully imported "kivy_deps.sdl2" 0.4.5
+[INFO   ] Kivy: v2.1.0
+[INFO   ] Kivy: Installed at "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\__init__.py"
+[INFO   ] Python: v3.10.4 (tags/v3.10.4:9d38120, Mar 23 2022, 23:13:41) [MSC v.1929 64 bit (AMD64)]
+[INFO   ] Python: Interpreter at "D:\GIT\kivy_django_kivy\kivy_venv\Scripts\python.exe"
+[INFO   ] Logger: Purge log fired. Processing...
+[INFO   ] Logger: Purge finished!
+[INFO   ] Factory: 189 symbols loaded
+[INFO   ] KivyMD: 0.104.2, git-bc7d1f5, 2021-06-06 (installed at "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivymd\__init__.py")
+[INFO   ] Image: Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] Text: Provider: sdl2
+[INFO   ] Window: Provider: sdl2
+[INFO   ] GL: Using the "OpenGL" graphics system
+[INFO   ] GL: GLEW initialization succeeded
+[INFO   ] GL: Backend used <glew>
+[INFO   ] GL: OpenGL version <b'4.6.0 - Build 30.0.100.9864'>
+[INFO   ] GL: OpenGL vendor <b'Intel'>
+[INFO   ] GL: OpenGL renderer <b'Intel(R) Iris(R) Xe Graphics'>
+[INFO   ] GL: OpenGL parsed version: 4, 6
+[INFO   ] GL: Shading version <b'4.60 - Build 30.0.100.9864'>
+[INFO   ] GL: Texture max size <16384>
+[INFO   ] GL: Texture max units <32>
+[INFO   ] Window: auto add sdl2 input provider
+[INFO   ] Window: virtual keyboard not allowed, single mode, not docked
+[INFO   ] GL: NPOT texture support is available
+[INFO   ] GL: Unpack subimage support is available
+[INFO   ] Base: Start application main loop
+[INFO   ] Loader: using a thread pool of 2 workers
+[INFO   ] Base: Leaving application in progress...
+[WARNING] stderr: Traceback (most recent call last):
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\test2.py", line 64, in <module>
+[WARNING] stderr:     TestNavigationDrawer().run()
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\app.py", line 955, in run
+[WARNING] stderr:     runTouchApp()
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\base.py", line 574, in runTouchApp
+[WARNING] stderr:     EventLoop.mainloop()
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\base.py", line 339, in mainloop
+[WARNING] stderr:     self.idle()
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\base.py", line 379, in idle
+[WARNING] stderr:     Clock.tick()
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\clock.py", line 733, in tick
+[WARNING] stderr:     self.post_idle(ts, self.idle())
+[WARNING] stderr:   File "D:\GIT\kivy_django_kivy\kivy_venv\lib\site-packages\kivy\clock.py", line 776, in post_idle
+[WARNING] stderr:     self._process_events()
+[WARNING] stderr:   File "kivy\_clock.pyx", line 620, in kivy._clock.CyClockBase._process_events
+[WARNING] stderr:   File "kivy\_clock.pyx", line 653, in kivy._clock.CyClockBase._process_events
+[WARNING] stderr:   File "kivy\_clock.pyx", line 649, in kivy._clock.CyClockBase._process_events
+[WARNING] stderr:   File "kivy\_clock.pyx", line 218, in kivy._clock.ClockEvent.tick
+[WARNING] stderr: TypeError: 'str' object is not callable

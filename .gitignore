@@ -1,0 +1,8 @@
+*.pyc
+*~
+__pycache__
+kivy_venv
+db.sqlite3
+/django
+.DS_Store
+*.bat
