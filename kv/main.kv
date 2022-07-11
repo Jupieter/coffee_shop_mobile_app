@@ -69,15 +69,17 @@ MDScreen:
             badge_icon: "numeric-10"
 
             MDLabel:
+                pos_hint: {"center_x": .5, "center_y": .9}
+                # size: '30dp'
                 text: 'Home'
-                halign: 'center'
+                
             MDBoxLayout:
                 id: box_login
                 orientation: "vertical"
                 adaptive_size: True
                 spacing: "56dp"
                 pos_hint: {"center_x": .5, "center_y": .5}
-
+                
 
         MDBottomNavigationItem:
             name: 'screen 2'
@@ -91,7 +93,7 @@ MDScreen:
             MDRoundFlatButton:
                 text: "LOG IN"
                 font_size: 12
-                pos_hint: {"center_x": 0.5}
+                pos_hint: {"center_x": 0.5, "center_y": .1}
 
         MDBottomNavigationItem:
             name: 'screen 3'
@@ -103,23 +105,18 @@ MDScreen:
                 halign: 'center'
 
         MDBottomNavigationItem:
-            name: 'screen 3'
+            name: 'screen 4'
             text: 'Login'
             icon: 'account-cancel'
+           
 
-            MDLabel:
-                text: 'Login'
-                halign: 'center'
-
-    
     MDNavigationLayout:
 
         ScreenManager:
-            id: Hiba1
+            id: top_menu
 
             MDScreen:
                 
-
                 MDToolbar:
                     id: mdtoolbar1
                     title: "I-me Coffe Bar 'Ante Portas' "

@@ -5,19 +5,44 @@ os.environ['KIVY_NO_CONSOLELOG'] = '1'
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
+from kivy.properties import ObjectProperty
 
 import requests
 
 Builder.load_file('kv/login.kv')
 
-class LoginCard(MDCard):
-	pass
 
-'''
+
+
+
+
+class LoginCard(MDCard):
+	print('test 0')
+	pass
+	
+
+	print('test 1')
+	txt_inpt = ObjectProperty(None)
+	def check_status(self, btn):
+		print('test 2')
+		print('button state is: {state}'.format(state=btn.state))
+		# print('text input text is: {txt}'.format(txt=self.txt_inpt))
+
 	def logger(self):
-		user = self.root.ids.user.text
-		password = self.root.ids.password.text
-		self.root.ids.welcome_label.text =(f'Hi {user, password}!')
+		user = self.ids.user.text
+		password = self.ids.password.text
+		self.ids.welcome_label.text =(f'Hi {user, password}!')
+
+	def clear(self):
+		print('Clear  !')
+		self.ids.user.text = ""		
+		self.ids.password.text = ""	
+		self.ids.welcome_label.text = "WELCOME"		
+
+	def testing(self):
+		print('Touch  !')
+'''
+
 		x = {'email':user, 'password':password}
 		sends = json=x
 		print(sends)
@@ -25,12 +50,6 @@ class LoginCard(MDCard):
 		print(store)
 		self.root.ids.data_label.text = f'sends {store}!'
 
-	def clear(self):
-		self.root.ids.welcome_label.text = "WELCOME"		
-		self.root.ids.user.text = ""		
-		self.root.ids.password.text = ""	
 
-	def on_touch_down(self):
-			print('Touch is a double tap !')
-	
 '''
+	

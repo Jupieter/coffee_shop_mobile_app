@@ -17,6 +17,7 @@ from kivymd.uix.card import MDCard
 
 from login import LoginCard
 from item_drawer import ItemDrawer
+
 # class ItemDrawer(OneLineIconListItem):
 #     icon = StringProperty()
 #     text_color = ListProperty((0, 0, 0, 1))
@@ -38,13 +39,13 @@ class DrawerList(ThemableBehavior, MDList):
 
 class TestNavigationDrawer(MDApp):
     def build(self):
-        print('zero')
+        print('main 1')
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
-        return Builder.load_file('kv/test3.kv')
+        return Builder.load_file('kv/main.kv')
     
     def on_start(self):
-        print('here')
+        print('main 2')
         icons_item = {
             "folder": "My files",
             "account-multiple": "Shared with me",
