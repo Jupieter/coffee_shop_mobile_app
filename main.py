@@ -4,6 +4,9 @@ cwd = os.getcwd()
 print(cwd)
 os.environ['KIVY_HOME'] = cwd + '/conf'
 
+import sqlite3
+
+
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -22,7 +25,7 @@ from item_drawer import ItemDrawer
 #     text_color = ListProperty((0, 0, 0, 1))
 
 login_card = ObjectProperty()
-active_token = "TOKEN"
+conn = ObjectProperty()
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -40,8 +43,8 @@ class DrawerList(ThemableBehavior, MDList):
 
 #recycle view for home screen
 class MyRecycleView(RecycleView):
+    # conn = sqlite3.connect('coffe_app.db')
     print('recycle 1')
-    print(active_token)
     def __init__(self, **kwargs):
         super(MyRecycleView, self).__init__(**kwargs)
         print('recycle 2')
@@ -49,12 +52,20 @@ class MyRecycleView(RecycleView):
         print('recycle 3')
         Clock.schedule_interval(self.load_data, 1)
     def load_data(self, *args):
+        active_token = 'semmi se'
+        # active_token = conn.execute("SELECT token from tokens")
         print(active_token)
 
 
 class TestNavigationDrawer(MDApp):
     def build(self):
         print('main 1')
+        # Create Database Or Connect To One
+        conn = sqlite3.connect('coffe_app.db')
+        # Create A Cursor
+        cur = conn.cursor()
+        # Create A Table
+        cur.execute("""CREATE TABLE if not exists tokens(token text)""")
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
         return Builder.load_file('kv/main.kv')

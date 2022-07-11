@@ -1,7 +1,3 @@
-import os
-import json
-os.environ['KIVY_NO_CONSOLELOG'] = '1'
-
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
@@ -10,7 +6,7 @@ from kivy.properties import ObjectProperty
 import requests
 
 Builder.load_file('kv/login.kv')
-
+active_token = "TOKEN1"
 
 
 
