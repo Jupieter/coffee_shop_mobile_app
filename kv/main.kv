@@ -1,3 +1,16 @@
+
+#:set active_token ''
+
+<MyRecycleView>:
+    viewclass: 'Label'
+    RecycleBoxLayout:
+        color: 0.5,0.5,1,1
+        default_size: 50, dp(30)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
 # Menu item in the DrawerList list.
 
 # <ItemDrawer>
@@ -67,19 +80,20 @@ MDScreen:
             text: 'Home'
             icon: 'home'
             badge_icon: "numeric-10"
+            
 
             MDLabel:
                 pos_hint: {"center_x": .5, "center_y": .9}
                 # size: '30dp'
                 text: 'Home'
-                
             MDBoxLayout:
-                id: box_login
+                id: box_home
                 orientation: "vertical"
                 adaptive_size: True
                 spacing: "56dp"
-                pos_hint: {"center_x": .5, "center_y": .5}
+                pos_hint: {"center_x": .5, "center_y": .5}   
                 
+
 
         MDBottomNavigationItem:
             name: 'screen 2'
@@ -109,6 +123,12 @@ MDScreen:
             text: 'Login'
             icon: 'account-cancel'
            
+            MDBoxLayout:
+                id: box_login
+                orientation: "vertical"
+                adaptive_size: True
+                spacing: "56dp"
+                pos_hint: {"center_x": .5, "center_y": .5}
 
     MDNavigationLayout:
 

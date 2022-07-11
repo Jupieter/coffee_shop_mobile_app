@@ -32,6 +32,12 @@ class LoginCard(MDCard):
 		user = self.ids.user.text
 		password = self.ids.password.text
 		self.ids.welcome_label.text =(f'Hi {user, password}!')
+		x = {'email':user, 'password':password}
+		sends = json=x
+		print(sends)
+		store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
+		print(store)
+		self.ids.data_label.text = f'sends {store}!'
 
 	def clear(self):
 		print('Clear  !')
@@ -40,16 +46,5 @@ class LoginCard(MDCard):
 		self.ids.welcome_label.text = "WELCOME"		
 
 	def testing(self):
-		print('Touch  !')
-'''
-
-		x = {'email':user, 'password':password}
-		sends = json=x
-		print(sends)
-		store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
-		print(store)
-		self.root.ids.data_label.text = f'sends {store}!'
-
-
-'''
-	
+		print('Touch  !')	
+		active_token = "TOKEN Login"

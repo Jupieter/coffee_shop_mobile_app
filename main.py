@@ -5,15 +5,14 @@ print(cwd)
 os.environ['KIVY_HOME'] = cwd + '/conf'
 
 from kivy.lang import Builder
-
+from kivy.clock import Clock
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.app import MDApp
-from kivy.properties import StringProperty, ListProperty
+from kivy.properties import StringProperty, ListProperty, ObjectProperty
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
-from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
-from kivymd.uix.card import MDCard
+from kivy.uix.recycleview import RecycleView
 
 from login import LoginCard
 from item_drawer import ItemDrawer
@@ -21,6 +20,9 @@ from item_drawer import ItemDrawer
 # class ItemDrawer(OneLineIconListItem):
 #     icon = StringProperty()
 #     text_color = ListProperty((0, 0, 0, 1))
+
+login_card = ObjectProperty()
+active_token = "TOKEN"
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -35,6 +37,19 @@ class DrawerList(ThemableBehavior, MDList):
                 item.text_color = self.theme_cls.text_color
                 break
         instance_item.text_color = self.theme_cls.primary_color
+
+#recycle view for home screen
+class MyRecycleView(RecycleView):
+    print('recycle 1')
+    print(active_token)
+    def __init__(self, **kwargs):
+        super(MyRecycleView, self).__init__(**kwargs)
+        print('recycle 2')
+        self.load_data()
+        print('recycle 3')
+        Clock.schedule_interval(self.load_data, 1)
+    def load_data(self, *args):
+        print(active_token)
 
 
 class TestNavigationDrawer(MDApp):
@@ -60,13 +75,12 @@ class TestNavigationDrawer(MDApp):
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name])
             )
             
-        self.root.ids.box_login.add_widget(
-            LoginCard(
-                line_color=(0.2, 0.2, 0.2, 0.8),         
-                )
-            )
+        self.root.ids.box_login.add_widget(LoginCard())
+        print('main login_card')
 
+        self.root.ids.box_home.add_widget(MyRecycleView())
+        print('main home recycle')
 
-
-
-TestNavigationDrawer().run()
+if __name__ == '__main__':
+    print('0')
+    TestNavigationDrawer().run()
