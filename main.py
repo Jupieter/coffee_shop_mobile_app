@@ -25,7 +25,7 @@ from item_drawer import ItemDrawer
 #     text_color = ListProperty((0, 0, 0, 1))
 
 login_card = ObjectProperty()
-conn = ObjectProperty()
+conn = 'dataDB'
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -43,18 +43,19 @@ class DrawerList(ThemableBehavior, MDList):
 
 #recycle view for home screen
 class MyRecycleView(RecycleView):
-    # conn = sqlite3.connect('coffe_app.db')
     print('recycle 1')
     def __init__(self, **kwargs):
         super(MyRecycleView, self).__init__(**kwargs)
         print('recycle 2')
         self.load_data()
         print('recycle 3')
-        Clock.schedule_interval(self.load_data, 1)
+        Clock.schedule_interval(self.load_data, 3)
     def load_data(self, *args):
+        conn = sqlite3.connect('coffe_app.db')
         active_token = 'semmi se'
-        # active_token = conn.execute("SELECT token from tokens")
-        print(active_token)
+        active_token = conn.execute("SELECT token from tokens")
+        for row in active_token:
+            print ("token = ", row[0])
 
 
 class TestNavigationDrawer(MDApp):

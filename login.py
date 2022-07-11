@@ -4,8 +4,10 @@ from kivymd.uix.card import MDCard
 from kivy.properties import ObjectProperty
 
 import requests
+import sqlite3
 
 Builder.load_file('kv/login.kv')
+
 active_token = "TOKEN1"
 
 
@@ -35,6 +37,7 @@ class LoginCard(MDCard):
 		print(store)
 		self.ids.data_label.text = f'sends {store}!'
 
+
 	def clear(self):
 		print('Clear  !')
 		self.ids.user.text = ""		
@@ -42,5 +45,14 @@ class LoginCard(MDCard):
 		self.ids.welcome_label.text = "WELCOME"		
 
 	def testing(self):
-		print('Touch  !')	
-		active_token = "TOKEN Login"
+		conn = sqlite3.connect('coffe_app.db')	
+		cur = conn.cursor()
+		# sql = '''INSERT INTO tokens (token) VALUES ('efghai123456')'''
+		sql = """UPDATE tokens SET token = 'abcde98765' WHERE id = 1"""
+		data = 'abcde98765'
+		print('2')
+		cur.execute(sql)
+		print('3 ', sql, 'data:', data)
+		conn.commit()
+		cur.close()	
+		print('END')
