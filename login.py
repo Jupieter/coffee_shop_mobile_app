@@ -38,8 +38,9 @@ class LoginCard(MDCard):
 		act_token = store['token']
 		print(tk_expiry)
 		print(act_token)
-		self.ids.data_label.text = f'sends {store}!'
+		# self.ids.data_label.text = f'sends {store}!'
 		self.act_token_db(act_token)
+		self.act_user_db(user, password)
 		print('END LOG') # the.boss@staff.com    Enter1
 	
 	def act_token_db(self, act_token):
@@ -54,6 +55,18 @@ class LoginCard(MDCard):
 		conn.commit()
 		conn.close()
 
+	def act_user_db(self, act_user, act_pass):
+		print(act_user, act_pass)
+		conn = sqlite3.connect('coffe_app.db')	
+		cur = conn.cursor()
+		sql = """UPDATE act_users 
+					SET act_user = ?, act_pass = ? 
+					WHERE id = ?"""
+		data = (act_user, act_pass, 1)
+		cur.execute(sql, data)
+		conn.commit()
+		conn.close()
+
 
 	def clear(self):
 		print('Clear  !')
@@ -63,7 +76,7 @@ class LoginCard(MDCard):
 
 
 
-		
+
 
 	def testing(self):
 		conn = sqlite3.connect('coffe_app.db')	
