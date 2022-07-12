@@ -25,7 +25,7 @@ from item_drawer import ItemDrawer
 #     text_color = ListProperty((0, 0, 0, 1))
 
 login_card = ObjectProperty()
-conn = 'dataDB'
+cons = 'dataDB'
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -54,13 +54,11 @@ class MyRecycleView(RecycleView):
     def load_data(self, *args):
         conn = sqlite3.connect('coffe_app.db')
         active_token = 'semmi se'
-        # active_token = conn.execute("SELECT token from tokens")
-        # print('tok: ', active_token)
-        # for row in active_token:
-        #     print ("token = ", row[0])
-        #     print(row)
-        #     if row == "":
-        #         print('semmi se')
+        active_token = conn.execute("SELECT act_token from act_tokens")
+        print('tok: ', active_token)
+        for row in active_token:
+            print ("token = ", row[0])
+            print(row[0])
 
 
 class TestNavigationDrawer(MDApp):

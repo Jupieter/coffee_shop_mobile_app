@@ -62,10 +62,16 @@
     # txt_input: txt_input
     MDRoundFlatButton:
         id: test_btn
-        text: "Test"
+        text: "Test 1"
         font_size: 12
         pos_hint: {"center_x": 0.5} 
         on_press:  root.testing() 
+    MDRoundFlatButton:
+        id: test_btn_2
+        text: "Test 2"
+        font_size: 12
+        pos_hint: {"center_x": 0.5} 
+        on_press:  root.testing2() 
     MDTextFieldRound:
         id: txt_input
         hint_text: test_btn.state   

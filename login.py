@@ -19,7 +19,6 @@ class LoginCard(MDCard):
 	pass
 	
 
-	print('test 1')
 	txt_inpt = ObjectProperty(None)
 	def check_status(self, btn):
 		print('test 2')
@@ -27,6 +26,7 @@ class LoginCard(MDCard):
 		# print('text input text is: {txt}'.format(txt=self.txt_inpt))
 
 	def logger(self):
+		print('START LOG')
 		user = self.ids.user.text
 		password = self.ids.password.text
 		self.ids.welcome_label.text =(f'Hi {user, password}!')
@@ -36,6 +36,7 @@ class LoginCard(MDCard):
 		store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
 		print(store)
 		self.ids.data_label.text = f'sends {store}!'
+		print('END LOG')
 
 
 	def clear(self):
@@ -47,16 +48,22 @@ class LoginCard(MDCard):
 	def testing(self):
 		conn = sqlite3.connect('coffe_app.db')	
 		cur = conn.cursor()
-		sql = '''INSERT OR IGNORE INTO act_tokens 
-				(id, act_token) 
-				VALUES 
-				(1, 'a1')'''
-		# sql = """UPDATE tokens SET token = ? WHERE id=1"""
+		sql = '''INSERT OR IGNORE INTO act_tokens (id, act_token) VALUES (1, 'a1')'''
+		print(sql)
+		cur.execute(sql)
+		print('END INSERT')
+
+	def testing2(self):
+		print('T 2')
+		conn2 = sqlite3.connect('coffe_app.db')	
+		print('conn2: ', conn2)
+		cur2 = conn2.cursor()
+		print('cur2: ', cur2)
 		sql2 = """UPDATE act_tokens SET act_token = ? WHERE id = 1"""
 		data = 'a1s2d3f4'
-		print('2')
-		# cur.execute(sql2, data)
-		print('3 ', sql, 'data:', data)
-		conn.commit()
-		cur.close()	
-		print('END')
+		print('3 ', sql2, 'data:', data)
+		cur2.execute(sql2, data)
+		conn2.commit()
+		cur2.close()	
+
+		print('END UPDATE')
