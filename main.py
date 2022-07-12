@@ -50,12 +50,17 @@ class MyRecycleView(RecycleView):
         self.load_data()
         print('recycle 3')
         Clock.schedule_interval(self.load_data, 3)
+
     def load_data(self, *args):
         conn = sqlite3.connect('coffe_app.db')
         active_token = 'semmi se'
-        active_token = conn.execute("SELECT token from tokens")
-        for row in active_token:
-            print ("token = ", row[0])
+        # active_token = conn.execute("SELECT token from tokens")
+        # print('tok: ', active_token)
+        # for row in active_token:
+        #     print ("token = ", row[0])
+        #     print(row)
+        #     if row == "":
+        #         print('semmi se')
 
 
 class TestNavigationDrawer(MDApp):
@@ -65,8 +70,10 @@ class TestNavigationDrawer(MDApp):
         conn = sqlite3.connect('coffe_app.db')
         # Create A Cursor
         cur = conn.cursor()
-        # Create A Table
-        cur.execute("""CREATE TABLE if not exists tokens(token text)""")
+        sql1 = """CREATE TABLE if not exists act_tokens(
+            id INT PRIMARY KEY NOT NULL,
+            act_token TEXT)"""
+        cur.execute(sql1)
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
         return Builder.load_file('kv/main.kv')
@@ -92,6 +99,7 @@ class TestNavigationDrawer(MDApp):
 
         self.root.ids.box_home.add_widget(MyRecycleView())
         print('main home recycle')
+        
 
 if __name__ == '__main__':
     print('0')
