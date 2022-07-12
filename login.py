@@ -34,9 +34,25 @@ class LoginCard(MDCard):
 		sends = json=x
 		print(sends)
 		store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
-		print(store)
+		tk_expiry = store['expiry']
+		act_token = store['token']
+		print(tk_expiry)
+		print(act_token)
 		self.ids.data_label.text = f'sends {store}!'
-		print('END LOG')
+		self.act_token_db(act_token)
+		print('END LOG') # the.boss@staff.com    Enter1
+	
+	def act_token_db(self, act_token):
+		print(act_token)
+		conn = sqlite3.connect('coffe_app.db')	
+		cur = conn.cursor()
+		sql = """UPDATE act_tokens 
+					SET act_token = ? 
+					WHERE id = ?"""
+		data = (act_token, 1)
+		cur.execute(sql, data)
+		conn.commit()
+		conn.close()
 
 
 	def clear(self):
@@ -44,6 +60,10 @@ class LoginCard(MDCard):
 		self.ids.user.text = ""		
 		self.ids.password.text = ""	
 		self.ids.welcome_label.text = "WELCOME"		
+
+
+
+		
 
 	def testing(self):
 		conn = sqlite3.connect('coffe_app.db')	
