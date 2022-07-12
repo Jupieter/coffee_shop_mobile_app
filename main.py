@@ -53,12 +53,10 @@ class MyRecycleView(RecycleView):
 
     def load_data(self, *args):
         conn = sqlite3.connect('coffe_app.db')
-        active_token = 'semmi se'
         active_token = conn.execute("SELECT act_token from act_tokens")
         print('tok: ', active_token)
         for row in active_token:
             print ("token = ", row[0])
-            print(row[0])
 
 
 class TestNavigationDrawer(MDApp):
@@ -66,12 +64,18 @@ class TestNavigationDrawer(MDApp):
         print('main 1')
         # Create Database Or Connect To One
         conn = sqlite3.connect('coffe_app.db')
-        # Create A Cursor
         cur = conn.cursor()
         sql1 = """CREATE TABLE if not exists act_tokens(
             id INT PRIMARY KEY NOT NULL,
             act_token TEXT)"""
         cur.execute(sql1)
+        sql = """INSERT OR IGNORE INTO 
+                act_tokens (id, act_token) VALUES (?, ?)"""
+        data1 = (1,'a1')    
+        cur.execute(sql, data1)
+        conn.commit()
+        conn.close()
+        
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
         return Builder.load_file('kv/main.kv')
@@ -102,3 +106,4 @@ class TestNavigationDrawer(MDApp):
 if __name__ == '__main__':
     print('0')
     TestNavigationDrawer().run()
+

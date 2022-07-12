@@ -48,22 +48,20 @@ class LoginCard(MDCard):
 	def testing(self):
 		conn = sqlite3.connect('coffe_app.db')	
 		cur = conn.cursor()
-		sql = '''INSERT OR IGNORE INTO act_tokens (id, act_token) VALUES (1, 'a1')'''
-		print(sql)
-		cur.execute(sql)
-		print('END INSERT')
+		sql = """INSERT OR IGNORE INTO 
+			act_tokens (id, act_token) VALUES (?, ?)"""
+		data1 = (1,'a1')
+		cur.execute(sql, data1)
+		conn.commit()
+		conn.close()
 
 	def testing2(self):
-		print('T 2')
-		conn2 = sqlite3.connect('coffe_app.db')	
-		print('conn2: ', conn2)
-		cur2 = conn2.cursor()
-		print('cur2: ', cur2)
-		sql2 = """UPDATE act_tokens SET act_token = ? WHERE id = 1"""
-		data = 'a1s2d3f4'
-		print('3 ', sql2, 'data:', data)
-		cur2.execute(sql2, data)
-		conn2.commit()
-		cur2.close()	
-
-		print('END UPDATE')
+		conn = sqlite3.connect('coffe_app.db')	
+		cur = conn.cursor()
+		sql = """UPDATE act_tokens 
+					SET act_token = ? 
+					WHERE id = ?"""
+		data = ('a1s2d3f4', 1)
+		cur.execute(sql, data)
+		conn.commit()
+		conn.close()	
