@@ -29,19 +29,30 @@ class LogInCard(MDCard):
 		print('START LOG')
 		user = self.ids.user.text
 		password = self.ids.password.text
-		self.ids.welcome_label.text =(f'Hi {user, password}!')
-		x = {'email':user, 'password':password}
-		sends = json=x
-		print(sends)
-		store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
-		tk_expiry = store['expiry']
-		act_token = store['token']
-		print(tk_expiry)
-		print(act_token)
-		# self.ids.data_label.text = f'sends {store}!'
-		self.act_token_db(act_token)
-		self.act_user_db(user, password)
-		print('END LOG') # the.boss@staff.com    Enter1
+		if user != "" or password != "" :
+			x = {'email':user, 'password':password}
+			sends = json=x
+			print(sends)
+			store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
+			print(store)
+			keys = []
+			for key in store.keys():
+				print (key)
+				keys.append(key)
+			print ('key: ', keys[0] )
+			if keys[0] == 'expiry':
+				self.ids.welcome_label.text =(f'Logged {user}.')
+				tk_expiry = store['expiry']
+				act_token = store['token']
+				print(tk_expiry)
+				print(act_token)
+				self.act_token_db(act_token)
+				self.act_user_db(user, password)
+				print('END LOG') # the.boss@staff.com    Enter1
+				# self.root.ids.box_logout.add_widget(LogInCard())
+			else:
+				self.ids.welcome_label.text =(f'Hi {user} something went wrong!')
+				print('WRONG LOG')
 	
 	def act_token_db(self, act_token):
 		print(act_token)
@@ -115,5 +126,6 @@ class LogInCard(MDCard):
 		conn.close()	
 
 class LogOutCard(MDCard):
-	print('test 0')
+	print('LogOutCard 0')
+			# self.ids.data_label.text = f'sends {store}!'
 	pass

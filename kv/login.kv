@@ -19,15 +19,6 @@
         height: self.texture_size[1]
         padding_y: 6
 
-    MDLabel:
-        id: data_label
-        text: "Data herer"
-        font_size: 12
-        halign: 'center'
-        size_hint_y: None
-        height: self.texture_size[1]
-        padding_y: 6
-    
     MDTextFieldRound:
         id: user
         hint_text: "username"
@@ -93,7 +84,7 @@
     line_color: (0.2, 0.2, 0.2, 0.8)
 
     MDLabel:
-        id: welcome_label
+        id: user_label
         text: "LOGOUT"
         font_size: 30
         halign: 'center'
@@ -102,7 +93,7 @@
         padding_y: 6
 
     MDLabel:
-        id: data_label
+        id: data_label_2
         text: "Data herer"
         font_size: 12
         halign: 'center'
@@ -110,14 +101,11 @@
         height: self.texture_size[1]
         padding_y: 6
     
-    MDTextFieldRound:
-        id: user
-        hint_text: "username"
-        icon_right: "account"
-        size_hint_x: None
-        width: 300
-        font_size: 14
+    MDRoundFlatButton:
+        text: "LOG OUT"
+        font_size: 12
         pos_hint: {"center_x": 0.5}
+        # on_press: root.log_out()
 
 
 # root.check.status(test_btn)
