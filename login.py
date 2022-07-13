@@ -14,7 +14,7 @@ active_token = "TOKEN1"
 
 
 
-class LoginCard(MDCard):
+class LogInCard(MDCard):
 	print('test 0')
 	pass
 	
@@ -67,6 +67,21 @@ class LoginCard(MDCard):
 		conn.commit()
 		conn.close()
 
+	def read_user(self):
+		conn = sqlite3.connect('coffe_app.db')	
+		cur = conn.cursor()
+		# conn.execute("SELECT act_token from act_tokens")
+		sql = """SELECT act_user FROM act_users WHERE id = 1"""
+		print(sql)
+		data = (1)
+		users = cur.execute(sql)
+		print('user: ', users)
+		for row in users:
+			user = row[0]
+			print ("user = ", user)
+		conn.close()
+		return user
+
 
 	def clear(self):
 		print('Clear  !')
@@ -98,3 +113,7 @@ class LoginCard(MDCard):
 		cur.execute(sql, data)
 		conn.commit()
 		conn.close()	
+
+class LogOutCard(MDCard):
+	print('test 0')
+	pass

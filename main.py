@@ -17,7 +17,7 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivy.uix.recycleview import RecycleView
 
-from login import LoginCard
+from login import LogInCard
 from item_drawer import ItemDrawer
 
 # class ItemDrawer(OneLineIconListItem):
@@ -54,14 +54,13 @@ class MyRecycleView(RecycleView):
     def load_data(self, *args):
         conn = sqlite3.connect('coffe_app.db')
         active_token = conn.execute("SELECT act_token from act_tokens")
-        print('tok: ', active_token)
         for row in active_token:
             print ("token = ", row[0])
 
 
 class TestNavigationDrawer(MDApp):
     def build(self):
-        print('main 1')
+        print('build')
         self.create_db()
         
         self.theme_cls.theme_style = "Light"
@@ -97,7 +96,7 @@ class TestNavigationDrawer(MDApp):
         conn.close()
     
     def on_start(self):
-        print('main 2')
+        print('on_start')
         icons_item = {
             "folder": "My files",
             "account-multiple": "Shared with me",
@@ -112,7 +111,7 @@ class TestNavigationDrawer(MDApp):
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name])
             )
             
-        self.root.ids.box_login.add_widget(LoginCard())
+        self.root.ids.box_login.add_widget(LogInCard())
         print('main login_card')
 
         self.root.ids.box_home.add_widget(MyRecycleView())
