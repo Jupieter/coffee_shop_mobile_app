@@ -23,6 +23,10 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 		ld_user = self.load_user()
 		self.ids.user.text = ld_user
 		print(ld_user)
+		# x = self.root.ids.screen4.ids.items()
+		x = self.ids.items()
+		for i in x:
+			print('x', x)
 	# pass
 	
 

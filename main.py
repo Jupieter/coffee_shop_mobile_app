@@ -122,8 +122,8 @@ class TestNavigationDrawer(MDApp):
             )
         log = LogInCard()
         log.act_token_db('Empty', 'Empty')
-        # self.root.ids.box_login.add_widget(LogInCard())
         self.root.ids.screen4.add_widget(LogInCard())
+        
         print('main login')
 
         self.root.ids.box_home.add_widget(MyRecycleView())
