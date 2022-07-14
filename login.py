@@ -7,14 +7,21 @@ import time
 
 import requests
 import sqlite3
+# from main import MyRecycleView
+# from main import active_token
+
 
 Builder.load_file('kv/login.kv')
 
-active_token = "TOKEN1"
 
 
-class LogInCard(MDCard):
+class LogInCard(MDCard): # the.boss@staff.com    Enter1
 	print('LogInCard 0')
+	def __init__(self, **kwargs):
+		super(LogInCard, self).__init__(**kwargs)
+		ld_user = self.load_user()
+		# self.ids.user.text = ld_user
+		print(ld_user)
 	# pass
 	
 
@@ -24,9 +31,23 @@ class LogInCard(MDCard):
 		print('button state is: {state}'.format(state=btn.state))
 		# print('text input text is: {txt}'.format(txt=self.txt_inpt))
 
-	def logger(self):
+	def log_out(self):
+		active_token = self.load_token()
+		print('LOG Token', active_token)
+		token_str = 'Token ' + active_token
+		hd_token = {'Authorization':token_str}
+		store = requests.post('http://127.0.0.1:8000/c_app/logout/', headers=hd_token)
+		print(hd_token)
+		print(store)
+		if store == 'Response [204]':
+			self.ids.welcome_label.text =(f'Logged out!')
+		
+
+	def log_in(self):
 		print('START LOG')
-		user = self.ids.user.text
+		self.ids.welcome_label.text =(f'LOG IN!')
+		user = self.ids.user.textself.ids.user.text
+		print(user)
 		password = self.ids.password.text
 		if user != "" or password != "" :
 			x = {'email':user, 'password':password}
@@ -48,17 +69,32 @@ class LogInCard(MDCard):
 				print(act_token)
 				self.act_token_db(act_token, act_expiry)
 				self.act_user_db(user, password)
-				print('END LOG') # the.boss@staff.com    Enter1
+				print('END LOG') 
 
 			elif keys[0] == 'non_field_errors':
 				x = store['non_field_errors']
 				print('val: ', x)
 				self.ids.welcome_label.text =(f' {x}')
 
+
 			else:
 				self.ids.welcome_label.text =(f'Hi /{user}/ wrong email or password!')
 				print('WRONG LOG')
 	
+	def load_token(self, *args):
+		conn = sqlite3.connect('coffe_app.db')
+		active_tk = conn.execute("SELECT act_token from act_tokens")
+		for row in active_tk:
+			active_token = row[0]
+		return active_token
+
+	def load_user(self, *args):
+		conn = sqlite3.connect('coffe_app.db')
+		user = conn.execute("SELECT act_user from act_users")
+		for row in user:
+			active_user = row[0]
+		return active_user
+
 	def act_token_db(self, act_token, act_expiry):
 		print(act_token)
 		conn = sqlite3.connect('coffe_app.db')	
@@ -109,9 +145,8 @@ class LogInCard(MDCard):
 
 	def test1(self):
 		print('tets 1')
-		
-		self.ids.test_btn.text = "LOG OUT"
-		
+		x= self.ids.items()
+		print(x)
 
 	def test2(self):
 		print('tets 2')

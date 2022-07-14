@@ -24,6 +24,7 @@ from item_drawer import ItemDrawer
 #     icon = StringProperty()
 #     text_color = ListProperty((0, 0, 0, 1))
 
+active_token = 'Semmi'
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -45,15 +46,17 @@ class MyRecycleView(RecycleView):
     def __init__(self, **kwargs):
         super(MyRecycleView, self).__init__(**kwargs)
         print('recycle 2')
-        self.load_data()
+        self.load_token()
         print('recycle 3')
-        Clock.schedule_interval(self.load_data, 3)
+        Clock.schedule_interval(self.load_token, 3)
 
-    def load_data(self, *args):
+    def load_token(self, *args):
         conn = sqlite3.connect('coffe_app.db')
-        active_token = conn.execute("SELECT act_token from act_tokens")
-        for row in active_token:
-            print ("token = ", row[0])
+        active_tok = conn.execute("SELECT act_token from act_tokens")
+        for row in active_tok:
+            active_token = row[0]
+            print ("token = ", active_token)
+        return active_token
 
 
 class TestNavigationDrawer(MDApp):
@@ -111,14 +114,15 @@ class TestNavigationDrawer(MDApp):
             )
         log = LogInCard()
         log.act_token_db('Empty', 'Empty')
-        log.act_user_db('Nobody','Empty')
         # self.root.ids.box_login.add_widget(LogInCard())
         self.root.ids.screen4.add_widget(LogInCard())
-        # self.root.ids.screen4.add_widget(LogMain())
         print('main login')
 
         self.root.ids.box_home.add_widget(MyRecycleView())
         print('main home recycle')
+    
+    def on_stop(self):
+        print('Finish')
         
 
 if __name__ == '__main__':

@@ -1,18 +1,5 @@
 #:set active_token ''
 
-# <LogMain>
-#     id: box_login
-#     orientation: "vertical"
-#     adaptive_size: True
-#     spacing: "56dp"
-#     pos_hint: {"center_x": .5, "center_y": .5}
-#     LogInCard:
-#     MDRoundFlatButton:
-#         id: test_btn_3
-#         text: "Test 3"
-#         font_size: 12
-#         pos_hint: {"center_x": 0.5} 
-#         on_press:  root.test3()
 
 <LogInCard>
     id: log_in_card  
@@ -28,7 +15,7 @@
 
     MDLabel:
         id: welcome_label
-        text: "LOGIN"
+        text: "SOMETHING"
         font_size: 30
         halign: 'center'
         size_hint_y: None
@@ -66,7 +53,7 @@
             text: "LOG IN"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            on_press: root.logger()
+            on_press: root.log_in()
         
         MDRoundFlatButton:
             text: "CLEAR"
@@ -79,7 +66,9 @@
             text: "LOG OUT"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            # on_press: root.logger()
+            on_press: root.log_out()
+
+
         # txt_input: txt_input
         MDRoundFlatButton:
             padding: 5
