@@ -1,7 +1,9 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
+from kivymd.uix.gridlayout import MDGridLayout
 from kivy.properties import ObjectProperty
+import time
 
 import requests
 import sqlite3
@@ -11,12 +13,9 @@ Builder.load_file('kv/login.kv')
 active_token = "TOKEN1"
 
 
-
-
-
 class LogInCard(MDCard):
-	print('test 0')
-	pass
+	print('LogInCard 0')
+	# pass
 	
 
 	txt_inpt = ObjectProperty(None)
@@ -36,32 +35,38 @@ class LogInCard(MDCard):
 			store = requests.post('http://127.0.0.1:8000/c_app/login/', data=sends).json()
 			print(store)
 			keys = []
+			values = []
 			for key in store.keys():
 				print (key)
 				keys.append(key)
 			print ('key: ', keys[0] )
 			if keys[0] == 'expiry':
 				self.ids.welcome_label.text =(f'Logged {user}.')
-				tk_expiry = store['expiry']
+				act_expiry = store['expiry']
 				act_token = store['token']
-				print(tk_expiry)
+				print(act_expiry)
 				print(act_token)
-				self.act_token_db(act_token)
+				self.act_token_db(act_token, act_expiry)
 				self.act_user_db(user, password)
 				print('END LOG') # the.boss@staff.com    Enter1
-				# self.root.ids.box_logout.add_widget(LogInCard())
+
+			elif keys[0] == 'non_field_errors':
+				x = store['non_field_errors']
+				print('val: ', x)
+				self.ids.welcome_label.text =(f' {x}')
+
 			else:
-				self.ids.welcome_label.text =(f'Hi {user} something went wrong!')
+				self.ids.welcome_label.text =(f'Hi /{user}/ wrong email or password!')
 				print('WRONG LOG')
 	
-	def act_token_db(self, act_token):
+	def act_token_db(self, act_token, act_expiry):
 		print(act_token)
 		conn = sqlite3.connect('coffe_app.db')	
 		cur = conn.cursor()
 		sql = """UPDATE act_tokens 
-					SET act_token = ? 
+					SET act_token = ?, act_expiry = ?
 					WHERE id = ?"""
-		data = (act_token, 1)
+		data = (act_token, act_expiry, 1)
 		cur.execute(sql, data)
 		conn.commit()
 		conn.close()
@@ -102,6 +107,16 @@ class LogInCard(MDCard):
 
 
 
+	def test1(self):
+		print('tets 1')
+		
+		self.ids.test_btn.text = "LOG OUT"
+		
+
+	def test2(self):
+		print('tets 2')
+		self.ids.test_btn.text = "Test 1"
+		# self.remove_widget(self.root.ids.box_logout)
 
 
 	def testing(self):
@@ -125,7 +140,7 @@ class LogInCard(MDCard):
 		conn.commit()
 		conn.close()	
 
-class LogOutCard(MDCard):
-	print('LogOutCard 0')
-			# self.ids.data_label.text = f'sends {store}!'
-	pass
+#class LogOutCard(MDCard):
+#	print('LogOutCard 0')
+#			# self.ids.data_label.text = f'sends {store}!'
+#	pass

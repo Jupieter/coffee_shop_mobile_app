@@ -24,8 +24,6 @@ from item_drawer import ItemDrawer
 #     icon = StringProperty()
 #     text_color = ListProperty((0, 0, 0, 1))
 
-login_card = ObjectProperty()
-cons = 'dataDB'
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -43,7 +41,7 @@ class DrawerList(ThemableBehavior, MDList):
 
 #recycle view for home screen
 class MyRecycleView(RecycleView):
-    print('recycle 1')
+    print('Recycle 1')
     def __init__(self, **kwargs):
         super(MyRecycleView, self).__init__(**kwargs)
         print('recycle 2')
@@ -60,7 +58,7 @@ class MyRecycleView(RecycleView):
 
 class TestNavigationDrawer(MDApp):
     def build(self):
-        print('build')
+        print('Build 0')
         self.create_db()
         
         self.theme_cls.theme_style = "Light"
@@ -68,13 +66,14 @@ class TestNavigationDrawer(MDApp):
         return Builder.load_file('kv/main.kv')
     
     def create_db(self):
-        print('CREATE START')
+        print('CREATE START DB')
         # Create Database Or Connect To One
         conn = sqlite3.connect('coffe_app.db')
         cur = conn.cursor()
         sql = """CREATE TABLE if not exists act_tokens(
             id INT PRIMARY KEY NOT NULL,
-            act_token TEXT)"""
+            act_token TEXT,
+            act_expiry TEXT)"""
         cur.execute(sql)
         sql = """INSERT OR IGNORE INTO 
                 act_tokens (id, act_token) VALUES (?, ?)"""
@@ -110,15 +109,19 @@ class TestNavigationDrawer(MDApp):
             self.root.ids.content_drawer.ids.md_list.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name])
             )
-            
-        self.root.ids.box_login.add_widget(LogInCard())
-        print('main login_card')
+        log = LogInCard()
+        log.act_token_db('Empty', 'Empty')
+        log.act_user_db('Nobody','Empty')
+        # self.root.ids.box_login.add_widget(LogInCard())
+        self.root.ids.screen4.add_widget(LogInCard())
+        # self.root.ids.screen4.add_widget(LogMain())
+        print('main login')
 
         self.root.ids.box_home.add_widget(MyRecycleView())
         print('main home recycle')
         
 
 if __name__ == '__main__':
-    print('0')
+    print('START MAIN')
     TestNavigationDrawer().run()
 
