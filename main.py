@@ -5,7 +5,7 @@ print(cwd)
 os.environ['KIVY_HOME'] = cwd + '/conf'
 
 import sqlite3
-
+import requests
 
 from kivy.lang import Builder
 from kivy.clock import Clock
@@ -45,10 +45,9 @@ class MyRecycleView(RecycleView):
     print('Recycle 1')
     def __init__(self, **kwargs):
         super(MyRecycleView, self).__init__(**kwargs)
-        print('recycle 2')
-        self.load_token()
-        print('recycle 3')
-        Clock.schedule_interval(self.load_token, 3)
+        print('Recy Token', active_token)
+        Clock.schedule_interval(self.load_data, 3)
+
 
     def load_token(self, *args):
         conn = sqlite3.connect('coffe_app.db')
@@ -56,15 +55,23 @@ class MyRecycleView(RecycleView):
         for row in active_tok:
             active_token = row[0]
             print ("token = ", active_token)
-        if active_token == 'Empty':
-            print('passive')
-            #x = self.parent.ids.items()
-            #print(x)
-            # self.ids.screen4.icon = 'account-cancel'
-        else: 
-            print('active')
-            # self.root.ids.screen4.icon = 'account-check'
+        print('recycle 3')
         return active_token
+
+    def load_data(self, *args):
+        print('recycle 2')
+        active_token = self.load_token()
+        print('LOG Token', active_token)
+        token_str = 'Token ' + active_token
+        hd_token = {'Authorization':token_str}
+        if active_token != 'Empty':
+            store = requests.get('http://127.0.0.1:8000/c_app/read/', headers=hd_token).json()
+            print(store)
+            list_data = []
+            for item in store:
+                list_data.append({'text': item['name']})
+            self.data = list_data
+            print(self.data)
 
 
 class TestNavigationDrawer(MDApp):
@@ -131,6 +138,9 @@ class TestNavigationDrawer(MDApp):
     
     def on_stop(self):
         print('Finish')
+    
+    def on_resume(self):
+        print('resume')
         
 
 if __name__ == '__main__':

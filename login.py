@@ -22,11 +22,16 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 		super(LogInCard, self).__init__(**kwargs)
 		ld_user = self.load_user()
 		self.ids.user.text = ld_user
-		print(ld_user)
+		# print(ld_user)
 		# x = self.root.ids.screen4.ids.items()
-		x = self.ids.items()
-		for i in x:
-			print('x', x)
+		#x = self.ids.items()
+		#for i in x:
+		#	print('x', x)
+
+	# def on_start(self):
+		print('on_start()')
+		print(self.get_root_window()) # -- None
+		print(self.get_parent_window()) # -- None
 	# pass
 	
 
