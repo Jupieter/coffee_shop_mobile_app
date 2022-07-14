@@ -56,6 +56,14 @@ class MyRecycleView(RecycleView):
         for row in active_tok:
             active_token = row[0]
             print ("token = ", active_token)
+        if active_token == 'Empty':
+            print('passive')
+            #x = self.parent.ids.items()
+            #print(x)
+            # self.ids.screen4.icon = 'account-cancel'
+        else: 
+            print('active')
+            # self.root.ids.screen4.icon = 'account-check'
         return active_token
 
 

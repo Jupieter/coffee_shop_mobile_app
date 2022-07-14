@@ -1,6 +1,3 @@
-#:set active_token ''
-
-
 <LogInCard>
     id: log_in_card  
     size_hint: None, None
@@ -15,7 +12,7 @@
 
     MDLabel:
         id: welcome_label
-        text: "SOMETHING"
+        text: "LOG IN"
         font_size: 30
         halign: 'center'
         size_hint_y: None
@@ -49,46 +46,28 @@
         spacing: 15,15
 
         MDRoundFlatButton:
-            id: log_btn 
+            id: log_in_btn 
             text: "LOG IN"
             font_size: 12
             pos_hint: {"center_x": 0.5}
             on_press: root.log_in()
+            disabled: False
         
         MDRoundFlatButton:
+            id: log_clr_btn
             text: "CLEAR"
             font_size: 12
             pos_hint: {"center_x": 0.5} 
             on_press: root.clear() 
+            disabled: False
 
         MDRoundFlatButton:
-            id: log_btn 
+            id: log_out_btn 
             text: "LOG OUT"
             font_size: 12
             pos_hint: {"center_x": 0.5}
             on_press: root.log_out()
-
-
-        # txt_input: txt_input
-        MDRoundFlatButton:
-            padding: 5
-            id: test_btn
-            text: "Test 1"
-            font_size: 12
-            pos_hint: {"center_x": 0.5} 
-            on_press:  root.test1() 
-        MDRoundFlatButton:
-            padding: 5
-            id: test_btn_2
-            text: "Test 2"
-            font_size: 12
-            pos_hint: {"center_x": 0.5} 
-            on_press:  root.read_user() 
-
-    MDTextFieldRound:
-        id: txt_input
-        hint_text: test_btn.state   
-        on_text: root.check_status(test_btn)    
+            disabled: True 
 
     Widget:
         size_hint_y: None
