@@ -18,6 +18,7 @@ from kivymd.uix.list import MDList
 from kivy.uix.recycleview import RecycleView
 
 from login import LogInCard
+from first_coffee import FirstCoffe
 from item_drawer import ItemDrawer
 
 # class ItemDrawer(OneLineIconListItem):
@@ -25,6 +26,8 @@ from item_drawer import ItemDrawer
 #     text_color = ListProperty((0, 0, 0, 1))
 
 active_token = 'Semmi'
+
+
 
 class ContentNavigationDrawer(MDBoxLayout):
     pass
@@ -56,6 +59,7 @@ class MyRecycleView(RecycleView):
             active_token = row[0]
             print ("token = ", active_token)
         print('recycle 3')
+        # Clock.schedule_interval(print('tik-tak'), 3)
         return active_token
 
     def load_data(self, *args):
@@ -75,6 +79,14 @@ class MyRecycleView(RecycleView):
             # self.data = first_coffe
             # print(self.data)
 
+            fc_date = first_coffe[0:10]
+            print(fc_date)
+            fc_hour = first_coffe[11:13]
+            fc_min = first_coffe[14:16]
+            print(fc_hour,':',fc_min)
+            date_time = [fc_date, fc_hour, fc_min]
+            print(date_time)
+
 
 class TestNavigationDrawer(MDApp):
     def build(self):
@@ -83,6 +95,8 @@ class TestNavigationDrawer(MDApp):
         
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
+        # Clock.schedule_once(self.clock_tk(), 0)
+        # Clock.schedule_interval(self.clock_tk(), 3)
         return Builder.load_file('kv/main.kv')
     
     def create_db(self):
@@ -132,17 +146,23 @@ class TestNavigationDrawer(MDApp):
         log = LogInCard()
         log.act_token_db('Empty', 'Empty')
         self.root.ids.screen4.add_widget(LogInCard())
+        self.root.ids.screen2.add_widget(FirstCoffe())
         
         print('main login')
 
         self.root.ids.box_home.add_widget(MyRecycleView())
         print('main home recycle')
     
+
+    
     def on_stop(self):
         print('Finish')
     
     def on_resume(self):
         print('resume')
+    
+    def clock_tk(self):
+        print('tik-tak')
         
 
 if __name__ == '__main__':

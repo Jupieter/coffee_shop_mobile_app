@@ -1,4 +1,3 @@
-from logging import root
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
