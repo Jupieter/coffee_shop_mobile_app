@@ -77,6 +77,7 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 				print(act_expiry)
 				print(act_token)
 				self.act_token_db(act_token, act_expiry)
+				password='Emp'
 				self.act_user_db(user, password)
 				self.btn_disable(True, True, False)
 				self.ids.welcome_label.text =('LOG OUT')
