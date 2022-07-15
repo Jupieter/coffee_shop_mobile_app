@@ -65,13 +65,15 @@ class MyRecycleView(RecycleView):
         token_str = 'Token ' + active_token
         hd_token = {'Authorization':token_str}
         if active_token != 'Empty':
-            store = requests.get('http://127.0.0.1:8000/c_app/read/', headers=hd_token).json()
+            store = requests.get('http://127.0.0.1:8000/c_app/todaytcoffee/', headers=hd_token).json()
             print(store)
             list_data = []
             for item in store:
-                list_data.append({'text': item['name']})
-            self.data = list_data
-            print(self.data)
+                list_data.append({'text': item['c_make_date']})
+            first_coffe = list_data[0]['text']
+            print(first_coffe)
+            # self.data = first_coffe
+            # print(self.data)
 
 
 class TestNavigationDrawer(MDApp):
