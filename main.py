@@ -4,6 +4,8 @@ cwd = os.getcwd()
 print(cwd)
 os.environ['KIVY_HOME'] = cwd + '/conf'
 
+from kivy.uix.label import Label
+import time
 import sqlite3
 import requests
 
@@ -15,9 +17,11 @@ from kivy.properties import StringProperty, ListProperty, ObjectProperty
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
+from kivymd.uix.card import MDCard
 from kivy.uix.recycleview import RecycleView
 
 from login import LogInCard
+from clock import IncrediblyCrudeClock
 from first_coffee import FirstCoffe
 from item_drawer import ItemDrawer
 
@@ -97,6 +101,9 @@ class TestNavigationDrawer(MDApp):
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
         # Clock.schedule_once(self.clock_tk(), 0)
         # Clock.schedule_interval(self.clock_tk(), 3)
+        # crudeclock = IncrediblyCrudeClock()
+        # Clock.schedule_once(crudeclock.update, 0)
+        # Clock.schedule_interval(crudeclock.update, 1)
         return Builder.load_file('kv/main.kv')
     
     def create_db(self):
@@ -145,12 +152,12 @@ class TestNavigationDrawer(MDApp):
             )
         log = LogInCard()
         log.act_token_db('Empty', 'Empty')
-        self.root.ids.screen4.add_widget(LogInCard())
         self.root.ids.screen2.add_widget(FirstCoffe())
+        self.root.ids.screen3.add_widget(IncrediblyCrudeClock())
+        self.root.ids.screen4.add_widget(LogInCard())
         
         print('main login')
-
-        self.root.ids.box_home.add_widget(MyRecycleView())
+        # self.root.ids.box_home.add_widget(MyRecycleView())
         print('main home recycle')
     
 
@@ -163,7 +170,6 @@ class TestNavigationDrawer(MDApp):
     
     def clock_tk(self):
         print('tik-tak')
-        
 
 if __name__ == '__main__':
     print('START MAIN')
