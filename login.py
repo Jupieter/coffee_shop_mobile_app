@@ -44,6 +44,8 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 		self.btn_disable(False, False, True)
 		self.act_token_db('Empty', 'Empty')
 		self.ids.welcome_label.text =('LOG IN')
+		scr4 = MDApp.get_running_app().id_scr_4
+		scr4.icon = 'account-cancel'
 		
 
 	def log_in(self):
@@ -73,6 +75,8 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 				self.act_user_db(user, password)
 				self.btn_disable(True, True, False)
 				self.ids.welcome_label.text =('LOG OUT')
+				scr4 = MDApp.get_running_app().id_scr_4
+				scr4.icon = 'account-check'
 				print('END LOG') 
 
 			elif keys[0] == 'non_field_errors':

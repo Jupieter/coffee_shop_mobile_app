@@ -13,7 +13,7 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.app import MDApp
-from kivy.properties import StringProperty, ListProperty, ObjectProperty
+from kivy.properties import StringProperty, ListProperty, ObjectProperty, NumericProperty
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
@@ -48,10 +48,13 @@ class DrawerList(ThemableBehavior, MDList):
 
 
 class TestNavigationDrawer(MDApp):
+    counter = NumericProperty(0)
+    id_scr_4 = ObjectProperty()
+    id_scr_1 = []
     def build(self):
         print('Build 0')
         self.create_db()
-        
+
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
         return Builder.load_file('kv/main.kv')
@@ -105,7 +108,9 @@ class TestNavigationDrawer(MDApp):
         self.root.ids.screen1.add_widget(FirstCoffe())
         self.root.ids.screen3.add_widget(IncrediblyCrudeClock())
         self.root.ids.screen4.add_widget(LogInCard())
-        
+        self.id_scr_1 = self.root.ids.items()
+        self.id_scr_4 = self.root.ids.screen4
+        print('id_scr_1', self.id_scr_1)
         print('main login')
 
     

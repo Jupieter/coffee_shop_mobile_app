@@ -1,4 +1,4 @@
-
+# #:import login.kv
 #:set active_token ''
 
 # Menu item in the DrawerList list.
@@ -72,12 +72,6 @@ MDScreen:
             icon: 'home'
             badge_icon: "numeric-10"
 
-            MDLabel:
-                id: home
-                pos_hint: {"center_x": .5, "center_y": .9}
-                # size: '30dp'
-                text: 'Home'
-
         MDBottomNavigationItem:
             id: screen2
             name: 'screen 2'
@@ -103,7 +97,7 @@ MDScreen:
         MDBottomNavigationItem:
             id: screen4
             name: 'screen 4'
-            text: 'Login'
+            text: 'Account'
             icon: 'account-cancel'
            
             # MDBoxLayout:

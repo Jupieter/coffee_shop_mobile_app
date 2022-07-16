@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivymd.app import MDApp
+from kivymd.uix.label import Label
 from kivymd.uix.card import MDCard
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -15,6 +16,9 @@ import sqlite3
 presentation = Builder.load_file('kv/first_coffee.kv')
 main_ids = ObjectProperty
 
+class CounterLabel(Label):
+    pass
+
 class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 	print('LogInCard 0')
 	def __init__(self, **kwargs):
@@ -24,15 +28,31 @@ class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 		# y = sm.screens
 		magam = self
 		# print('fk sm :', y)
-		# x = sm
-		# print('fk ids :', x)
-		act_t =  datetime.now()
-		print('-',act_t)
+		x = self.children[0]
+		print('fk ids :', x)
 		Clock.schedule_once(magam.load_data, 0)
-		Clock.schedule_interval(magam.load_data, 3) 
+		Clock.schedule_interval(magam.load_data, 60) 
 	
-	def fk_ids(self, *ids):
-		print('ids ', ids)
+	def on_touch_down(self, touch):
+        # get a reference to the top right label only by walking through the widget tree
+		
+		x = -4
+		while x < 3:
+			label = self.children[x]  #.children[0]
+			ids = self.children[x].ids  #.children[0]
+			print(x, 'The top right label is {}'.format(label))
+			print('The top right ids is {}'.format(ids))
+			x += 1
+		yy = MDApp.get_running_app().id_scr_1
+		scr4 = MDApp.get_running_app().id_scr_4
+		print('yy',yy, '   scr4: ', scr4)
+		for y in yy:
+			if y[0] == 'screen1':
+				scr = y[1]
+			print(y[0])
+		print(scr)
+		scr.icon = 'account-check'
+
 	
 	def load_token(self, *args):
 		conn = sqlite3.connect('coffe_app.db')
@@ -84,3 +104,4 @@ class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 			self.ids.fk_min_label.text = (f'{fc_min}')
 			self.ids.fk_hour_to_label.text = (f'{to_hour}')
 			self.ids.fk_min_to_label.text = (f'{to_min}')
+		
