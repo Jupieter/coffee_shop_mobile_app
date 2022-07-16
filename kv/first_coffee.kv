@@ -96,12 +96,36 @@
         background_down: "image/koffe_bw.jpeg"
         border: (25,25,25,25)
 
+
+
+    MDCard:
+        id: fk_to_cd
+        size_hint: None, None
+        size: 300, 80
+        pos_hint: {"center_x": 0.5}
+        elevation: 25
+        padding: 25
+        spacing: 25
+        radius: 20
+        orientation: 'vertical'
+        line_color: (0.2, 0.2, 0.2, 1)
+        MDLabel:
+            id: fk_to_label
+            text: "The following coffee is prepared:"
+            font_size: 20
+            halign: 'center'
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            # size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 6
+
     MDGridLayout:
         adaptive_size: True
         # md_bg_color: app.theme_cls.primary_color
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         cols: 2
         spacing: 15,15
+
 
         MDCard:
             id: fk_hour_to 
@@ -143,3 +167,6 @@
                 # size_hint_y: None
                 height: self.texture_size[1]
                 padding_y: 6
+    Widget:
+        size_hint_y: None
+        height: 10

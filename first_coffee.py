@@ -71,13 +71,16 @@ class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 				print(fc_hour,':',fc_min)
 
 				dt = first_coffe[0:10]+' ' + first_coffe[11:19]
-				# dt_obj = type(dt) #datetime.strptime(dt, '%d/%m/%y %H:%M:%S')
 				dt_obj =datetime.fromisoformat(dt)
 				act_t = datetime.now()
 				print(dt_obj,'-', type(dt_obj), '-',type(act_t))
 				timedelta_obj = (dt_obj - act_t)
-				print('timedelta_obj', timedelta_obj)
+				to_hour = int(timedelta_obj.seconds/3600)
+				to_min = int(timedelta_obj.seconds/60)-to_hour*60
+				print(to_hour,to_min, 'timedelta_obj', timedelta_obj)
 			
 			self.ids.fk_datum_label.text = (f'{fc_date}')
 			self.ids.fk_hour_label.text = (f'{fc_hour}')
 			self.ids.fk_min_label.text = (f'{fc_min}')
+			self.ids.fk_hour_to_label.text = (f'{to_hour}')
+			self.ids.fk_min_to_label.text = (f'{to_min}')
