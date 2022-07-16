@@ -32,21 +32,14 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 		print(self.get_root_window()) # -- None
 		print(self.get_parent_window()) # -- None
 	# pass
-	
-
-	txt_inpt = ObjectProperty(None)
-	def check_status(self, btn):
-		print('test 2')
-		print('button state is: {state}'.format(state=btn.state))
-		# print('text input text is: {txt}'.format(txt=self.txt_inpt))
 
 	def log_out(self):
 		active_token = self.load_token()
-		print('LOG Token', active_token)
+		# print('LOG Token', active_token)
 		token_str = 'Token ' + active_token
 		hd_token = {'Authorization':token_str}
 		store = requests.post('http://127.0.0.1:8000/c_app/logout/', headers=hd_token)
-		print(hd_token)
+		#print(hd_token)
 		print(store)
 		self.btn_disable(False, False, True)
 		self.act_token_db('Empty', 'Empty')
