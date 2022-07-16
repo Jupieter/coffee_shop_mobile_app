@@ -23,11 +23,10 @@ from kivy.uix.recycleview import RecycleView
 from login import LogInCard
 from clock import IncrediblyCrudeClock
 from first_coffee import FirstCoffe
-from item_drawer import ItemDrawer
 
-# class ItemDrawer(OneLineIconListItem):
-#     icon = StringProperty()
-#     text_color = ListProperty((0, 0, 0, 1))
+class ItemDrawer(OneLineIconListItem):
+    icon = StringProperty()
+    text_color = ListProperty((0, 0, 0, 1))
 
 active_token = 'Semmi'
 
@@ -55,11 +54,6 @@ class TestNavigationDrawer(MDApp):
         
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Brown"  # "Purple", "Red"
-        # Clock.schedule_once(self.clock_tk(), 0)
-        # Clock.schedule_interval(self.clock_tk(), 3)
-        # crudeclock = IncrediblyCrudeClock()
-        # Clock.schedule_once(crudeclock.update, 0)
-        # Clock.schedule_interval(crudeclock.update, 1)
         return Builder.load_file('kv/main.kv')
     
     def create_db(self):
@@ -108,13 +102,12 @@ class TestNavigationDrawer(MDApp):
             )
         log = LogInCard()
         log.act_token_db('Empty', 'Empty')
-        self.root.ids.screen2.add_widget(FirstCoffe())
+        self.root.ids.screen1.add_widget(FirstCoffe())
         self.root.ids.screen3.add_widget(IncrediblyCrudeClock())
         self.root.ids.screen4.add_widget(LogInCard())
         
         print('main login')
-        # self.root.ids.box_home.add_widget(MyRecycleView())
-        print('main home recycle')
+
     
 
     
