@@ -7,7 +7,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-import time
+from datetime import time, datetime
 import requests
 import sqlite3
 
@@ -26,6 +26,8 @@ class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 		# print('fk sm :', y)
 		# x = sm
 		# print('fk ids :', x)
+		act_t =  datetime.now()
+		print('-',act_t)
 		Clock.schedule_once(magam.load_data, 0)
 		Clock.schedule_interval(magam.load_data, 3) 
 	
@@ -67,8 +69,14 @@ class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 				fc_hour = first_coffe[11:13]
 				fc_min = first_coffe[14:16]
 				print(fc_hour,':',fc_min)
-				date_time = [fc_date, fc_hour, fc_min]
-				print(date_time)
+
+				dt = first_coffe[0:10]+' ' + first_coffe[11:19]
+				# dt_obj = type(dt) #datetime.strptime(dt, '%d/%m/%y %H:%M:%S')
+				dt_obj =datetime.fromisoformat(dt)
+				act_t = datetime.now()
+				print(dt_obj,'-', type(dt_obj), '-',type(act_t))
+				timedelta_obj = (dt_obj - act_t)
+				print('timedelta_obj', timedelta_obj)
 			
 			self.ids.fk_datum_label.text = (f'{fc_date}')
 			self.ids.fk_hour_label.text = (f'{fc_hour}')
