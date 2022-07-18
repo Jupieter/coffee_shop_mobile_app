@@ -4,6 +4,7 @@
 # Menu item in the DrawerList list.
 
 <ItemDrawer>
+    id: it_draw
     theme_text_color: "Custom"
     on_release: self.parent.set_color_item(self)
 
@@ -13,7 +14,8 @@
         theme_text_color: "Custom"
         text_color: root.text_color
 
-<ContentNavigationDrawer> 
+<ContentNavigationDrawer>
+    id: cont_Nav
     # Let menu
     orientation: "vertical"
     padding: "8dp"
@@ -61,6 +63,7 @@ MDScreen:
         source: "image/bean_bg.jpg"
 
     MDBottomNavigation:
+        id: nav_bottom
         panel_color: app.theme_cls.primary_color
         selected_color_background: "Custom"
         text_color_active: 0, 0, 0, 1
@@ -100,16 +103,11 @@ MDScreen:
             text: 'Account'
             icon: 'account-cancel'
            
-            # MDBoxLayout:
-            #     id: box_login
-            #     orientation: "vertical"
-            #     adaptive_size: True
-            #     spacing: "56dp"
-            #     pos_hint: {"center_x": .5, "center_y": .5}
-
     MDNavigationLayout:
+        id: nav_lay
 
         ScreenManager:
+            id: sm_manager
 
             MDScreen:
                 id: top_menu

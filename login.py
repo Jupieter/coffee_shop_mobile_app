@@ -45,6 +45,7 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 		self.act_token_db('Empty', 'Empty')
 		self.ids.welcome_label.text =('LOG IN')
 		scr4 = MDApp.get_running_app().id_scr_4
+		self.ids.password.text = ""
 		scr4.icon = 'account-cancel'
 		
 
@@ -76,6 +77,7 @@ class LogInCard(MDCard): # the.boss@staff.com    Enter1
 				self.btn_disable(True, True, False)
 				self.ids.welcome_label.text =('LOG OUT')
 				scr4 = MDApp.get_running_app().id_scr_4
+				self.ids.password.text = ""
 				scr4.icon = 'account-check'
 				print('END LOG') 
 

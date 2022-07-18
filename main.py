@@ -49,8 +49,8 @@ class DrawerList(ThemableBehavior, MDList):
 
 class TestNavigationDrawer(MDApp):
     counter = NumericProperty(0)
+    id_scr_1 = ObjectProperty()
     id_scr_4 = ObjectProperty()
-    id_scr_1 = []
     def build(self):
         print('Build 0')
         self.create_db()
@@ -108,10 +108,10 @@ class TestNavigationDrawer(MDApp):
         self.root.ids.screen1.add_widget(FirstCoffe())
         self.root.ids.screen3.add_widget(IncrediblyCrudeClock())
         self.root.ids.screen4.add_widget(LogInCard())
-        self.id_scr_1 = self.root.ids.items()
+        self.id_scr_1 = self.root.ids.screen1
         self.id_scr_4 = self.root.ids.screen4
-        print('id_scr_1', self.id_scr_1)
-        print('main login')
+        main_rt = self.root
+        print('main login', main_rt)
 
     
 

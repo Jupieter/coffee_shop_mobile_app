@@ -33,25 +33,11 @@ class FirstCoffe(MDCard): # the.boss@staff.com    Enter1
 		Clock.schedule_once(magam.load_data, 0)
 		Clock.schedule_interval(magam.load_data, 60) 
 	
-	def on_touch_down(self, touch):
+	def switch_scr2(self):
         # get a reference to the top right label only by walking through the widget tree
-		
-		x = -4
-		while x < 3:
-			label = self.children[x]  #.children[0]
-			ids = self.children[x].ids  #.children[0]
-			print(x, 'The top right label is {}'.format(label))
-			print('The top right ids is {}'.format(ids))
-			x += 1
-		yy = MDApp.get_running_app().id_scr_1
-		scr4 = MDApp.get_running_app().id_scr_4
-		print('yy',yy, '   scr4: ', scr4)
-		for y in yy:
-			if y[0] == 'screen1':
-				scr = y[1]
-			print(y[0])
-		print(scr)
-		scr.icon = 'account-check'
+		scr1 = MDApp.get_running_app().id_scr_1
+		print(scr1)
+		scr1.icon = 'account-check'
 
 	
 	def load_token(self, *args):
